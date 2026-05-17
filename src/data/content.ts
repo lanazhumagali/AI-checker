@@ -1,0 +1,335 @@
+export const POPULAR_BOOKS = [
+  'Harry Potter', 'The Lord of the Rings', '1984', 'Dune', 'The Alchemist',
+  'Sherlock Holmes', 'The Little Prince', 'Animal Farm', 'Brave New World',
+  'The Hitchhiker\'s Guide', 'Crime and Punishment', 'War and Peace',
+  'The Count of Monte Cristo', 'Don Quixote', 'Moby-Dick',
+  'The Great Gatsby', 'To Kill a Mockingbird', 'Pride and Prejudice',
+  'Jane Eyre', 'Wuthering Heights', 'Anna Karenina', 'The Brothers Karamazov',
+  'Master and Margarita', 'Solaris', 'Foundation', 'Ender\'s Game',
+  'The Name of the Wind', 'A Song of Ice and Fire', 'Mistborn',
+  'The Way of Kings', 'Sapiens', 'Thinking, Fast and Slow',
+  'Atomic Habits', 'The 48 Laws of Power', 'Art of War',
+  'Meditations', 'The Republic', 'Thus Spoke Zarathustra',
+  'Norwegian Wood', 'Kafka on the Shore', 'The Stranger',
+  'Siddhartha', 'Steppenwolf', 'Narcissus and Goldmund',
+  'The Monk Who Sold His Ferrari', 'Rich Dad Poor Dad',
+  'Zero to One', 'Elon Musk', 'Steve Jobs',
+]
+
+export const POPULAR_MOVIES = [
+  'The Dark Knight', 'Inception', 'Interstellar', 'The Matrix',
+  'Avengers: Endgame', 'Spider-Man', 'Iron Man', 'Doctor Strange',
+  'Star Wars', 'The Lord of the Rings', 'Harry Potter',
+  'Jurassic Park', 'Back to the Future', 'The Godfather',
+  'Pulp Fiction', 'Fight Club', 'Forrest Gump', 'The Shawshank Redemption',
+  'Goodfellas', 'Parasite', 'Spirited Away', 'Your Name',
+  'Demon Slayer', 'Attack on Titan', 'Naruto', 'One Piece',
+  'Breaking Bad', 'Game of Thrones', 'Stranger Things', 'Black Mirror',
+  'The Witcher', 'Squid Game', 'Money Heist', 'Dark',
+  'Sherlock', 'Peaky Blinders', 'The Office', 'Friends',
+  'How I Met Your Mother', 'Big Bang Theory', 'Westworld',
+  'Mr. Robot', 'House of Cards', 'Mindhunter',
+]
+
+export const MUSIC_GENRES = [
+  'Hip-Hop', 'R&B', 'Pop', 'Rock', 'Metal', 'Jazz',
+  'Classical', 'Electronic', 'House', 'Techno', 'Trap',
+  'Lo-fi', 'Indie', 'Alternative', 'Punk', 'Soul',
+  'Reggae', 'Country', 'Folk', 'Ambient', 'K-Pop',
+]
+
+export const COUNTRIES = [
+  'Kazakhstan', 'Russia', 'Ukraine', 'Belarus', 'USA', 'UK',
+  'Germany', 'France', 'Brazil', 'Argentina', 'Japan', 'South Korea',
+  'China', 'India', 'Turkey', 'Poland', 'Czech Republic', 'Spain',
+  'Italy', 'Netherlands', 'Sweden', 'Norway', 'Finland', 'Canada',
+  'Australia', 'Mexico', 'Colombia', 'Egypt', 'Nigeria', 'South Africa',
+]
+
+export const AI_CHARACTERS = [
+  {
+    id: 'grandmaster',
+    name: 'Хладнокровный Гроссмейстер',
+    emoji: '🧊',
+    description: 'Стратегический интеллектуал',
+    style: 'Длинные ловушки · Позиционное давление',
+    color: '#3b82f6',
+    gradient: 'from-blue-900 to-slate-900',
+    rating: 2800,
+    quote: '"Каждый ход — это инвестиция в будущую победу."',
+  },
+  {
+    id: 'trickster',
+    name: 'Хаотичный Трикстер',
+    emoji: '🃏',
+    description: 'Непредсказуемый манипулятор',
+    style: 'Странные дебюты · Психологическое давление',
+    color: '#a855f7',
+    gradient: 'from-purple-900 to-pink-900',
+    rating: 2650,
+    quote: '"Хаос — мой лучший союзник."',
+  },
+  {
+    id: 'commander',
+    name: 'Военный Командир',
+    emoji: '⚔️',
+    description: 'Доминантный агрессор',
+    style: 'Давление · Атака · Контроль центра',
+    color: '#ef4444',
+    gradient: 'from-red-900 to-orange-900',
+    rating: 2720,
+    quote: '"Атака — лучшая защита."',
+  },
+  {
+    id: 'observer',
+    name: 'Тихий Наблюдатель',
+    emoji: '🔮',
+    description: 'Психолог',
+    style: 'Анализ поведения · Изматывающий стиль',
+    color: '#14b8a6',
+    gradient: 'from-teal-900 to-cyan-900',
+    rating: 2580,
+    quote: '"Я вижу твои страхи раньше тебя."',
+  },
+  {
+    id: 'oracle',
+    name: 'ИИ-Оракул',
+    emoji: '🤖',
+    description: 'Футуристический сверхразум',
+    style: 'Прогнозы · Адаптация под стиль',
+    color: '#f59e0b',
+    gradient: 'from-yellow-900 to-amber-900',
+    rating: 2950,
+    quote: '"Вероятность твоей победы: 23%. Но я исправлю это."',
+  },
+]
+
+export const LESSONS = [
+  {
+    id: 1,
+    title: 'Основы шашек',
+    icon: '♟️',
+    description: 'Правила, цели, базовые ходы',
+    duration: '10 мин',
+    xp: 50,
+    locked: false,
+  },
+  {
+    id: 2,
+    title: 'Контроль центра',
+    icon: '🎯',
+    description: 'Почему центр — ключ к победе',
+    duration: '15 мин',
+    xp: 80,
+    locked: false,
+  },
+  {
+    id: 3,
+    title: 'Дебюты и ловушки',
+    icon: '🕵️',
+    description: 'Популярные дебютные системы',
+    duration: '20 мин',
+    xp: 100,
+    locked: false,
+  },
+  {
+    id: 4,
+    title: 'Тактические удары',
+    icon: '⚡',
+    description: 'Двойные удары, вилки, ловушки',
+    duration: '25 мин',
+    xp: 120,
+    locked: true,
+  },
+  {
+    id: 5,
+    title: 'Эндшпиль',
+    icon: '🏁',
+    description: 'Техника игры в конце партии',
+    duration: '30 мин',
+    xp: 150,
+    locked: true,
+  },
+  {
+    id: 6,
+    title: 'Психология игры',
+    icon: '🧠',
+    description: 'Как мыслить как чемпион',
+    duration: '20 мин',
+    xp: 130,
+    locked: true,
+  },
+]
+
+export const FLASHCARDS = [
+  {
+    id: 1,
+    front: 'Что такое "дамка"?',
+    back: 'Шашка, достигшая последнего ряда противника. Может ходить на любое расстояние по диагонали.',
+    category: 'Правила',
+  },
+  {
+    id: 2,
+    front: 'Принцип "темпа" в шашках',
+    back: 'Преимущество в развитии — когда ты делаешь активный ход, а соперник вынужден защищаться.',
+    category: 'Стратегия',
+  },
+  {
+    id: 3,
+    front: 'Что такое "оппозиция"?',
+    back: 'Позиция, когда две дамки стоят на одной диагонали с нечётным числом полей между ними. Дающий оппозицию имеет преимущество.',
+    category: 'Эндшпиль',
+  },
+  {
+    id: 4,
+    front: 'Правило "треугольника Петрова"',
+    back: 'Маневр дамки по трём ключевым полям для создания позиционного преимущества в эндшпиле.',
+    category: 'Эндшпиль',
+  },
+  {
+    id: 5,
+    front: 'Дебют "Косяк"',
+    back: 'Агрессивная система, где шашки быстро выходят на центральные позиции, создавая давление.',
+    category: 'Дебюты',
+  },
+]
+
+export const SKILL_GAMES = [
+  {
+    id: 'memory',
+    name: 'Память позиций',
+    icon: '🧠',
+    description: 'Запомни и воспроизведи позицию',
+    color: '#8b5cf6',
+  },
+  {
+    id: 'speed',
+    name: 'Скорость реакции',
+    icon: '⚡',
+    description: 'Найди лучший ход за 5 секунд',
+    color: '#f59e0b',
+  },
+  {
+    id: 'logic',
+    name: 'Логические цепочки',
+    icon: '🔗',
+    description: 'Просчитай комбинацию на 3 хода вперёд',
+    color: '#06b6d4',
+  },
+  {
+    id: 'focus',
+    name: 'Концентрация',
+    icon: '🎯',
+    description: 'Не отвлекайся и найди скрытую ловушку',
+    color: '#10b981',
+  },
+]
+
+export const CHARITY_DATA = {
+  total: '$2,847',
+  percentage: 10,
+  projects: [
+    { name: 'Помощь детям', icon: '👶', amount: '$890', percent: 31 },
+    { name: 'Борьба с голодом', icon: '🌾', amount: '$720', percent: 25 },
+    { name: 'Экология', icon: '🌱', amount: '$650', percent: 23 },
+    { name: 'Гуманитарные проекты', icon: '🤝', amount: '$587', percent: 21 },
+  ],
+  lastReport: '1 мая 2026',
+  nextReport: '15 мая 2026',
+}
+
+export const PATH_NODES = [
+  { id: 1, title: 'Новичок', icon: '🌱', completed: true, stars: 3, chapter: 1 },
+  { id: 2, title: 'Первые ходы', icon: '♟️', completed: true, stars: 3, chapter: 1 },
+  { id: 3, title: 'Центр', icon: '🎯', completed: true, stars: 2, chapter: 1 },
+  { id: 4, title: 'Атака', icon: '⚔️', completed: true, stars: 1, chapter: 2 },
+  { id: 5, title: 'Защита', icon: '🛡️', completed: false, stars: 0, chapter: 2, active: true },
+  { id: 6, title: 'Тактика', icon: '🧩', completed: false, stars: 0, chapter: 2 },
+  { id: 7, title: 'Комбо', icon: '💥', completed: false, stars: 0, chapter: 3 },
+  { id: 8, title: 'Эндшпиль', icon: '🏁', completed: false, stars: 0, chapter: 3 },
+  { id: 9, title: 'Чемпион', icon: '🏆', completed: false, stars: 0, chapter: 3 },
+]
+
+export const SOCIAL_POSTS = [
+  {
+    id: 1,
+    user: 'AlexK_99',
+    country: '🇰🇿',
+    avatar: '🦁',
+    avatarBg: '#f59e0b',
+    time: '2 мин назад',
+    content: 'Только что достиг ранга "Профессионал"! 🎉 7-й страйк подряд!',
+    image: null as string | null,
+    likes: 47,
+    comments: 12,
+    xpGained: 500,
+    achievement: '🏆 Новый ранг',
+  },
+  {
+    id: 2,
+    user: 'Maria_Chess',
+    country: '🇷🇺',
+    avatar: '🦊',
+    avatarBg: '#ef4444',
+    time: '15 мин назад',
+    content: 'Решила все 5 задач дня без подсказок! ИИ-тренер говорит что я делаю успехи 💪',
+    image: null as string | null,
+    likes: 89,
+    comments: 23,
+    xpGained: 200,
+    achievement: '⚡ Идеальный день',
+  },
+  {
+    id: 3,
+    user: 'DimaN_Pro',
+    country: '🇺🇦',
+    avatar: '🐺',
+    avatarBg: '#8b5cf6',
+    time: '1 час назад',
+    content: 'Победил Хаотичного Трикстера на максимальной сложности 😤 Это была война нервов',
+    image: null as string | null,
+    likes: 156,
+    comments: 41,
+    xpGained: 350,
+    achievement: '🃏 Победа над Трикстером',
+  },
+  {
+    id: 4,
+    user: 'SaraPlay',
+    country: '🇩🇪',
+    avatar: '🦋',
+    avatarBg: '#06b6d4',
+    time: '3 часа назад',
+    content: 'Первая победа в онлайне! Спасибо урокам по контролю центра — это реально работает!',
+    image: null as string | null,
+    likes: 203,
+    comments: 58,
+    xpGained: 150,
+    achievement: '🌟 Первая победа',
+  },
+]
+
+export const LEADERBOARD = [
+  { rank: 1, user: 'Magnus_V', country: '🇳🇴', xp: 89420, streak: 156, avatar: '👑', bg: '#f59e0b' },
+  { rank: 2, user: 'Kerim_KZ', country: '🇰🇿', xp: 76340, streak: 98, avatar: '🦅', bg: '#3b82f6' },
+  { rank: 3, user: 'Anna_Pro', country: '🇷🇺', xp: 71200, streak: 87, avatar: '🌟', bg: '#ec4899' },
+  { rank: 4, user: 'JohnD_UK', country: '🇬🇧', xp: 68900, streak: 72, avatar: '🎯', bg: '#8b5cf6' },
+  { rank: 5, user: 'Fatima_S', country: '🇰🇿', xp: 65100, streak: 64, avatar: '🌸', bg: '#10b981' },
+  { rank: 142, user: 'You', country: '🇰🇿', xp: 1240, streak: 7, avatar: '🚀', bg: '#22c55e', isUser: true },
+]
+
+export const AVATAR_OPTIONS = {
+  faces: ['😊', '😎', '🧐', '😏', '🤩', '😤', '🦁', '🐺', '🦊', '🐻', '🦅', '🐉'],
+  hairs: ['👱', '👩‍🦰', '👩‍🦱', '👩‍🦳', '👨‍🦲', '🧑‍🦯', '👸', '🤴'],
+  outfits: ['👕', '👔', '🥋', '🎽', '🧥', '👗', '🦺', '🥼'],
+  accessories: ['🎩', '👑', '🕶️', '🎭', '⚔️', '🛡️', '🎮', 'none'],
+}
+
+export const SHOP_ITEMS = [
+  { id: 1, name: 'Золотые шашки', icon: '🥇', price: 200, type: 'pieces', rarity: 'rare' },
+  { id: 2, name: 'Космическая доска', icon: '🌌', price: 350, type: 'board', rarity: 'epic' },
+  { id: 3, name: 'Огненный эффект', icon: '🔥', price: 500, type: 'effect', rarity: 'legendary' },
+  { id: 4, name: 'Корона чемпиона', icon: '👑', price: 300, type: 'avatar', rarity: 'epic' },
+  { id: 5, name: 'Неоновая рамка', icon: '💜', price: 150, type: 'frame', rarity: 'uncommon' },
+  { id: 6, name: 'Победный танец', icon: '💃', price: 250, type: 'emotion', rarity: 'rare' },
+]
