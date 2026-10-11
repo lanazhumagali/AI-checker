@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Ventorme — найди свою профессию и вуз бесплатно</title>
+  <meta name="description" content="Ventorme: профтест, подбор вузов и грантов, калькулятор ЕНТ, подготовка к IELTS и SAT, ИИ-помощник Venti. Бесплатно для школьников." />
+  <meta property="og:title" content="Ventorme — найди свою профессию и вуз" />
+  <meta property="og:description" content="Ответь на 3 вопроса и начни бесплатно: профтест, вузы, гранты, IELTS/SAT." />
+  <meta name="theme-color" content="#4f46e5" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f46e5'/%3E%3Cpath d='M9 10l7 13 7-13' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    if (window.tailwind) tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Manrope', 'Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            brand: { 50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 900: '#1e1b4b' },
+            violet2: { 500: '#8b5cf6', 600: '#7c3aed' }
+          },
+          boxShadow: { card: '0 10px 30px -12px rgba(79,70,229,.25)' }
+        }
+      }
+    };
+  </script>
+  <style>
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body { font-family: 'Manrope', 'Inter', system-ui, sans-serif; }
+    .grad-text { background: linear-gradient(90deg, #4f46e5, #7c3aed); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .grad-btn { background: linear-gradient(90deg, #4f46e5, #7c3aed); }
+    .opt { transition: transform .12s ease, border-color .12s ease, background-color .12s ease; }
+    .opt:active { transform: scale(.97); }
+    details > summary { list-style: none; cursor: pointer; }
+    details > summary::-webkit-details-marker { display: none; }
+    details[open] .chev { transform: rotate(180deg); }
+    .chev { transition: transform .2s ease; }
+    .fade-in { animation: fade .25s ease; }
+    @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    .pb-safe { padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased pb-28 md:pb-0">
+
+  <!-- ===== Шапка ===== -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-slate-100">
+    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between gap-3">
+      <a href="#top" class="flex items-center gap-2 font-extrabold text-lg tracking-tight">
+        <span class="w-8 h-8 rounded-lg grad-btn grid place-items-center text-white text-sm">V</span>
+        Ventorme
+      </a>
+      <div class="flex items-center gap-2">
+        <div class="flex bg-slate-100 rounded-full p-0.5 text-xs font-bold" role="group" aria-label="Язык">
+          <button data-lang="ru" class="lang-btn px-2.5 py-1.5 rounded-full">RU</button>
+          <button data-lang="kz" class="lang-btn px-2.5 py-1.5 rounded-full">ҚАЗ</button>
+          <button data-lang="en" class="lang-btn px-2.5 py-1.5 rounded-full">EN</button>
+        </div>
+        <a href="#" data-cta class="hidden md:inline-flex grad-btn text-white text-sm font-bold px-4 py-2 rounded-full hover:opacity-90" data-i18n="ctaShort">Регистрация</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ===== Первый экран + квиз ===== -->
+    <section class="relative overflow-hidden">
+      <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-violet2-500/20 blur-3xl"></div>
+      <div class="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-brand-500/20 blur-3xl"></div>
+
+      <div class="relative max-w-5xl mx-auto px-4 pt-4 pb-10 md:pt-14 md:pb-16 md:grid md:grid-cols-2 md:gap-10 md:items-center">
+        <div>
+          <span class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-700 bg-brand-100 px-3 py-1 rounded-full" data-i18n="badge">Бесплатно для школьников 9–11 классов</span>
+          <h1 class="mt-2 text-[26px] leading-[1.15] md:text-5xl font-extrabold tracking-tight">
+            <span data-i18n="h1a">Найди свою профессию</span>
+            <span class="grad-text" data-i18n="h1b">и вуз мечты</span>
+          </h1>
+          <p class="mt-1.5 text-slate-600 text-sm md:text-lg" data-i18n="sub">Ответь на 3 вопроса — и начни бесплатно: профтест, подбор вузов и грантов, ЕНТ, IELTS и SAT.</p>
+        </div>
+
+        <!-- Квиз -->
+        <div class="mt-4 md:mt-0 bg-white rounded-3xl shadow-card border border-slate-100 p-3.5 md:p-6">
+          <div id="quiz" aria-live="polite"></div>
+          <p class="mt-3 text-center text-xs text-slate-500" data-i18n="micro">Бесплатно · Без карты · Быстрый вход через Google или почту</p>
+        </div>
+        <div class="md:col-start-2 mt-3 text-center">
+          <a href="#" data-cta class="text-sm font-semibold text-brand-700 underline underline-offset-4" data-i18n="skip">Сразу к регистрации →</a>
+        </div>
+      </div>
+
+      <!-- Подсказка для встроенного браузера Instagram/Facebook -->
+      <div id="webview-tip" class="hidden max-w-5xl mx-auto px-4 -mt-4 mb-6">
+        <div class="bg-amber-50 border border-amber-200 text-amber-900 text-sm rounded-2xl p-3">
+          <b data-i18n="tipTitle">Открыл из Instagram?</b>
+          <span data-i18n="tipText">Вход через Google может не сработать во встроенном браузере. Нажми ⋯ вверху → «Открыть в браузере» или зарегистрируйся по почте.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Что ты получишь ===== -->
+    <section class="max-w-5xl mx-auto px-4 py-10">
+      <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight" data-i18n="valueTitle">Что ты получишь бесплатно</h2>
+      <div class="mt-5 grid gap-3 md:grid-cols-3">
+        <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-card">
+          <div class="w-11 h-11 rounded-2xl bg-brand-100 grid place-items-center text-brand-700">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>
+          </div>
+          <h3 class="mt-3 font-bold text-lg" data-i18n="v1t">Профтест</h3>
+          <p class="mt-1 text-slate-600 text-sm" data-i18n="v1d">Узнаешь, какие профессии подходят именно тебе, — по интересам и сильным сторонам.</p>
+        </div>
+        <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-card">
+          <div class="w-11 h-11 rounded-2xl bg-violet-100 grid place-items-center text-violet-700">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-5 9 5-9 5-9-5z"/><path d="M7 12v4c0 1.5 2.5 3 5 3s5-1.5 5-3v-4"/></svg>
+          </div>
+          <h3 class="mt-3 font-bold text-lg" data-i18n="v2t">Подбор вузов и грантов</h3>
+          <p class="mt-1 text-slate-600 text-sm" data-i18n="v2d">Вузы в Казахстане и за рубежом, калькулятор гранта по ЕНТ, подготовка к IELTS и SAT.</p>
+        </div>
+        <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-card">
+          <div class="w-11 h-11 rounded-2xl bg-sky-100 grid place-items-center text-sky-700">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg>
+          </div>
+          <h3 class="mt-3 font-bold text-lg" data-i18n="v3t">ИИ-помощник Venti</h3>
+          <p class="mt-1 text-slate-600 text-sm" data-i18n="v3d">Ответит на вопросы о поступлении и поможет с мотивационным эссе в любое время.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Как это работает ===== -->
+    <section class="max-w-5xl mx-auto px-4 pb-4">
+      <ol class="grid gap-2 md:grid-cols-3 text-sm">
+        <li class="flex items-center gap-3 bg-white rounded-2xl p-3 border border-slate-100"><span class="w-7 h-7 shrink-0 rounded-full grad-btn text-white grid place-items-center font-bold">1</span><span data-i18n="s1">Регистрация за 30 секунд через Google или почту</span></li>
+        <li class="flex items-center gap-3 bg-white rounded-2xl p-3 border border-slate-100"><span class="w-7 h-7 shrink-0 rounded-full grad-btn text-white grid place-items-center font-bold">2</span><span data-i18n="s2">Проходишь профтест и указываешь цели</span></li>
+        <li class="flex items-center gap-3 bg-white rounded-2xl p-3 border border-slate-100"><span class="w-7 h-7 shrink-0 rounded-full grad-btn text-white grid place-items-center font-bold">3</span><span data-i18n="s3">Получаешь профессии, вузы и план подготовки</span></li>
+      </ol>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="max-w-3xl mx-auto px-4 py-10">
+      <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight" data-i18n="faqTitle">Частые вопросы</h2>
+      <div class="mt-5 space-y-2">
+        <details class="bg-white rounded-2xl border border-slate-100 p-4">
+          <summary class="flex items-center justify-between gap-3 font-bold"><span data-i18n="q1">Что я получу после регистрации?</span><svg class="chev shrink-0 text-brand-600" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p class="mt-2 text-slate-600 text-sm" data-i18n="a1">Доступ к профтесту, подбору вузов и грантов, калькулятору гранта по ЕНТ, материалам для IELTS и SAT и ИИ-помощнику Venti. Регистрация бесплатная, карта не нужна.</p>
+        </details>
+        <details class="bg-white rounded-2xl border border-slate-100 p-4">
+          <summary class="flex items-center justify-between gap-3 font-bold"><span data-i18n="q2">Безопасны ли мои данные?</span><svg class="chev shrink-0 text-brand-600" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p class="mt-2 text-slate-600 text-sm" data-i18n="a2">Для регистрации нужна только почта или Google-аккаунт — номер карты и документы не нужны. Как хранятся данные, подробно написано в политике конфиденциальности на ventorme.ai.</p>
+        </details>
+        <details class="bg-white rounded-2xl border border-slate-100 p-4">
+          <summary class="flex items-center justify-between gap-3 font-bold"><span data-i18n="q3">Можно ли поступить, если оценки не идеальные?</span><svg class="chev shrink-0 text-brand-600" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p class="mt-2 text-slate-600 text-sm" data-i18n="a3">Да. Вузы подбираются под твои баллы и цели — не только топовые. А калькулятор ЕНТ покажет, на какие гранты у тебя есть шансы уже сейчас.</p>
+        </details>
+        <details class="bg-white rounded-2xl border border-slate-100 p-4">
+          <summary class="flex items-center justify-between gap-3 font-bold"><span data-i18n="q4">Как платформа подбирает университеты?</span><svg class="chev shrink-0 text-brand-600" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p class="mt-2 text-slate-600 text-sm" data-i18n="a4">Учитывает результаты профтеста, твои баллы ЕНТ или экзаменов, страну и пожелания по обучению — и показывает подходящие вузы и программы.</p>
+        </details>
+      </div>
+      <p class="mt-4 text-sm text-slate-500"><span data-i18n="parents">Родителям: ребёнок регистрируется сам, а вы можете следить за его прогрессом.</span></p>
+    </section>
+
+    <!-- ===== Финальный CTA ===== -->
+    <section class="max-w-5xl mx-auto px-4 pb-12">
+      <div class="grad-btn rounded-3xl p-6 md:p-10 text-white text-center">
+        <h2 class="text-2xl md:text-3xl font-extrabold" data-i18n="finalTitle">Начни сегодня — это бесплатно</h2>
+        <p class="mt-2 text-white/85" data-i18n="finalSub">30 секунд на регистрацию — и у тебя план поступления.</p>
+        <a href="#" data-cta class="mt-5 inline-flex items-center justify-center bg-white text-brand-700 font-extrabold px-6 py-3.5 rounded-2xl hover:bg-brand-50 w-full md:w-auto" data-i18n="cta">Зарегистрироваться бесплатно</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+    <span data-i18n="footer">Ventorme — платформа профориентации и поступления.</span>
+    <a href="https://ventorme.ai" class="underline">ventorme.ai</a>
+  </footer>
+
+  <!-- ===== Нижняя панель: cookie + липкая кнопка ===== -->
+  <div class="fixed inset-x-0 bottom-0 z-50 pointer-events-none">
+    <div id="cookie" class="hidden pointer-events-auto mx-3 mb-2 md:mx-auto md:max-w-md md:mb-4 bg-slate-900 text-white text-xs rounded-2xl px-3 py-2 flex items-center justify-between gap-3 shadow-lg">
+      <span data-i18n="cookie">Мы используем cookie.</span>
+      <button id="cookie-ok" class="shrink-0 bg-white text-slate-900 font-bold px-3 py-1 rounded-full">OK</button>
+    </div>
+    <div class="md:hidden pointer-events-auto bg-white/95 backdrop-blur border-t border-slate-200 px-3 pt-3 pb-safe">
+      <a href="#" data-cta class="grad-btn flex items-center justify-center text-white font-extrabold text-base h-12 rounded-2xl shadow-card" data-i18n="cta">Зарегистрироваться бесплатно</a>
+    </div>
+  </div>
+
+  <script>
+    // Ссылка команды. Проверьте номер команды перед публикацией.
+    var TEAM_LINK = 'https://ventorme.ai/register?utm_source=hacknext&utm_campaign=team-017';
+
+    var I18N = {
+      ru: {
+        ctaShort: 'Регистрация', badge: 'Бесплатно для школьников 9–11 классов',
+        h1a: 'Найди свою профессию', h1b: 'и вуз мечты',
+        sub: 'Ответь на 3 вопроса — и начни бесплатно: профтест, подбор вузов и грантов, ЕНТ, IELTS и SAT.',
+        micro: 'Бесплатно · Без карты · Быстрый вход через Google или почту', skip: 'Сразу к регистрации →',
+        tipTitle: 'Открыл из Instagram?', tipText: 'Вход через Google может не сработать во встроенном браузере. Нажми ⋯ вверху → «Открыть в браузере» или зарегистрируйся по почте.',
+        valueTitle: 'Что ты получишь бесплатно',
+        v1t: 'Профтест', v1d: 'Узнаешь, какие профессии подходят именно тебе, — по интересам и сильным сторонам.',
+        v2t: 'Подбор вузов и грантов', v2d: 'Вузы в Казахстане и за рубежом, калькулятор гранта по ЕНТ, подготовка к IELTS и SAT.',
+        v3t: 'ИИ-помощник Venti', v3d: 'Ответит на вопросы о поступлении и поможет с мотивационным эссе в любое время.',
+        s1: 'Регистрация за 30 секунд через Google или почту', s2: 'Проходишь профтест и указываешь цели', s3: 'Получаешь профессии, вузы и план подготовки',
+        faqTitle: 'Частые вопросы',
+        q1: 'Что я получу после регистрации?', a1: 'Доступ к профтесту, подбору вузов и грантов, калькулятору гранта по ЕНТ, материалам для IELTS и SAT и ИИ-помощнику Venti. Регистрация бесплатная, карта не нужна.',
+        q2: 'Безопасны ли мои данные?', a2: 'Для регистрации нужна только почта или Google-аккаунт — номер карты и документы не нужны. Как хранятся данные, подробно написано в политике конфиденциальности на ventorme.ai.',
+        q3: 'Можно ли поступить, если оценки не идеальные?', a3: 'Да. Вузы подбираются под твои баллы и цели — не только топовые. А калькулятор ЕНТ покажет, на какие гранты у тебя есть шансы уже сейчас.',
+        q4: 'Как платформа подбирает университеты?', a4: 'Учитывает результаты профтеста, твои баллы ЕНТ или экзаменов, страну и пожелания по обучению — и показывает подходящие вузы и программы.',
+        parents: 'Родителям: ребёнок регистрируется сам, а вы можете следить за его прогрессом.',
+        finalTitle: 'Начни сегодня — это бесплатно', finalSub: '30 секунд на регистрацию — и у тебя план поступления.',
+        cta: 'Зарегистрироваться бесплатно', footer: 'Ventorme — платформа профориентации и поступления.',
+        cookie: 'Мы используем cookie.',
+        step: 'Вопрос {n} из 3', back: '← Назад', restart: 'Пройти заново',
+        q: [
+          { t: 'Какая у тебя главная цель?', o: [['🎯', 'Сдать ЕНТ и получить грант'], ['✈️', 'Поступить за рубеж'], ['📘', 'Подготовиться к IELTS / SAT'], ['🧭', 'Понять, кем стать']] },
+          { t: 'В каком ты классе?', o: [['9', '9 класс'], ['10', '10 класс'], ['11', '11 класс'], ['🎓', 'Уже окончил(а)']] },
+          { t: 'Что тебе ближе?', o: [['💻', 'IT и инженерия'], ['🧬', 'Медицина и наука'], ['📈', 'Бизнес и право'], ['🎨', 'Творчество и языки']] }
+        ],
+        resTitle: 'Отлично! Твой старт готов',
+        resLead: 'В Ventorme для тебя:',
+        res: [
+          ['Калькулятор гранта по ЕНТ — узнаешь свои шансы', 'Подбор вузов Казахстана под твои баллы'],
+          ['Подбор зарубежных вузов и грантов', 'Помощь с мотивационным эссе от Venti'],
+          ['Подготовка к IELTS и SAT', 'Вузы, куда нужен твой экзамен'],
+          ['Полный профтест — профессии под твои интересы', 'Вузы, где учат этим профессиям']
+        ],
+        resCommon: 'План поступления и ИИ-помощник Venti',
+        resCta: 'Открыть мой план бесплатно'
+      },
+      kz: {
+        ctaShort: 'Тіркелу', badge: '9–11 сынып оқушыларына тегін',
+        h1a: 'Өз мамандығыңды', h1b: 'және арман ЖОО-ңды тап',
+        sub: '3 сұраққа жауап бер де, тегін баста: кәсіптік тест, ЖОО мен грант таңдау, ҰБТ, IELTS және SAT.',
+        micro: 'Тегін · Картасыз · Google немесе пошта арқылы жылдам кіру', skip: 'Бірден тіркелу →',
+        tipTitle: 'Instagram-нан аштың ба?', tipText: 'Кірістірілген браузерде Google арқылы кіру істемеуі мүмкін. Жоғарыдағы ⋯ → «Браузерде ашу» бас немесе пошта арқылы тіркел.',
+        valueTitle: 'Тегін не аласың',
+        v1t: 'Кәсіптік тест', v1d: 'Қызығушылығың мен күшті жақтарыңа сай қандай мамандықтар келетінін білесің.',
+        v2t: 'ЖОО мен грант таңдау', v2d: 'Қазақстан мен шетелдегі ЖОО-лар, ҰБТ грант калькуляторы, IELTS және SAT-қа дайындық.',
+        v3t: 'Venti ЖИ-көмекшісі', v3d: 'Түсу туралы сұрақтарға жауап береді және мотивациялық эссе жазуға көмектеседі.',
+        s1: 'Google немесе пошта арқылы 30 секундта тіркелу', s2: 'Кәсіптік тесттен өтіп, мақсаттарыңды көрсетесің', s3: 'Мамандықтар, ЖОО-лар және дайындық жоспарын аласың',
+        faqTitle: 'Жиі қойылатын сұрақтар',
+        q1: 'Тіркелгеннен кейін не аламын?', a1: 'Кәсіптік тест, ЖОО мен грант таңдау, ҰБТ грант калькуляторы, IELTS және SAT материалдары және Venti ЖИ-көмекшісі. Тіркелу тегін, карта керек емес.',
+        q2: 'Деректерім қауіпсіз бе?', a2: 'Тіркелу үшін тек пошта немесе Google-аккаунт керек — карта нөмірі мен құжаттар қажет емес. Деректер қалай сақталатыны ventorme.ai сайтындағы құпиялылық саясатында жазылған.',
+        q3: 'Бағаларым мінсіз болмаса, түсуге бола ма?', a3: 'Иә. ЖОО-лар сенің балың мен мақсатыңа қарай таңдалады — тек топ ЖОО-лар емес. ҰБТ калькуляторы қазірдің өзінде қай гранттарға мүмкіндігің бар екенін көрсетеді.',
+        q4: 'Платформа университеттерді қалай таңдайды?', a4: 'Кәсіптік тест нәтижесін, ҰБТ немесе емтихан балдарыңды, елді және оқу бойынша қалауыңды ескеріп, сай ЖОО мен бағдарламаларды көрсетеді.',
+        parents: 'Ата-аналарға: бала өзі тіркеледі, ал сіз оның прогресін бақылай аласыз.',
+        finalTitle: 'Бүгін баста — бұл тегін', finalSub: 'Тіркелуге 30 секунд — және түсу жоспарың дайын.',
+        cta: 'Тегін тіркелу', footer: 'Ventorme — кәсіптік бағдар және ЖОО-ға түсу платформасы.',
+        cookie: 'Біз cookie қолданамыз.',
+        step: '{n}-сұрақ / 3', back: '← Артқа', restart: 'Қайта бастау',
+        q: [
+          { t: 'Басты мақсатың қандай?', o: [['🎯', 'ҰБТ тапсырып, грант алу'], ['✈️', 'Шетелге түсу'], ['📘', 'IELTS / SAT-қа дайындалу'], ['🧭', 'Кім болатынымды түсіну']] },
+          { t: 'Нешінші сыныпта оқисың?', o: [['9', '9 сынып'], ['10', '10 сынып'], ['11', '11 сынып'], ['🎓', 'Мектепті бітірдім']] },
+          { t: 'Саған не жақын?', o: [['💻', 'IT және инженерия'], ['🧬', 'Медицина және ғылым'], ['📈', 'Бизнес және құқық'], ['🎨', 'Шығармашылық және тілдер']] }
+        ],
+        resTitle: 'Керемет! Бастауың дайын',
+        resLead: 'Ventorme-да сен үшін:',
+        res: [
+          ['ҰБТ грант калькуляторы — мүмкіндігіңді біл', 'Балыңа сай Қазақстан ЖОО-лары'],
+          ['Шетелдік ЖОО мен гранттар', 'Venti-ден мотивациялық эссеге көмек'],
+          ['IELTS және SAT-қа дайындық', 'Емтиханың қажет ЖОО-лар'],
+          ['Толық кәсіптік тест — қызығушылығыңа сай мамандықтар', 'Осы мамандықтарды оқытатын ЖОО-лар']
+        ],
+        resCommon: 'Түсу жоспары және Venti ЖИ-көмекшісі',
+        resCta: 'Жоспарымды тегін ашу'
+      },
+      en: {
+        ctaShort: 'Sign up', badge: 'Free for students in grades 9–11',
+        h1a: 'Find your career', h1b: 'and dream university',
+        sub: 'Answer 3 questions and start for free: career test, university and scholarship matching, UNT, IELTS and SAT.',
+        micro: 'Free · No card · Quick sign-up with Google or email', skip: 'Go straight to sign-up →',
+        tipTitle: 'Opened from Instagram?', tipText: 'Google sign-in may not work in the in-app browser. Tap ⋯ at the top → “Open in browser”, or sign up with email.',
+        valueTitle: 'What you get for free',
+        v1t: 'Career test', v1d: 'Find out which careers fit you best, based on your interests and strengths.',
+        v2t: 'Universities & scholarships', v2d: 'Universities in Kazakhstan and abroad, UNT grant calculator, IELTS and SAT prep.',
+        v3t: 'Venti AI assistant', v3d: 'Answers your admission questions and helps with your motivation essay anytime.',
+        s1: 'Sign up in 30 seconds with Google or email', s2: 'Take the career test and set your goals', s3: 'Get careers, universities and a prep plan',
+        faqTitle: 'FAQ',
+        q1: 'What do I get after signing up?', a1: 'Access to the career test, university and scholarship matching, the UNT grant calculator, IELTS and SAT materials and the Venti AI assistant. Sign-up is free, no card needed.',
+        q2: 'Is my data safe?', a2: 'You only need an email or a Google account — no card number or documents. How data is stored is described in the privacy policy on ventorme.ai.',
+        q3: 'Can I get in if my grades aren’t perfect?', a3: 'Yes. Universities are matched to your scores and goals — not only top ones. The UNT calculator shows which grants you can aim for right now.',
+        q4: 'How does the platform match universities?', a4: 'It takes into account your career test results, UNT or exam scores, country and study preferences, and shows suitable universities and programs.',
+        parents: 'For parents: your child signs up, and you can follow their progress.',
+        finalTitle: 'Start today — it’s free', finalSub: '30 seconds to sign up, and you have an admission plan.',
+        cta: 'Sign up for free', footer: 'Ventorme — career guidance and university admission platform.',
+        cookie: 'We use cookies.',
+        step: 'Question {n} of 3', back: '← Back', restart: 'Start over',
+        q: [
+          { t: 'What is your main goal?', o: [['🎯', 'Pass the UNT and get a grant'], ['✈️', 'Study abroad'], ['📘', 'Prepare for IELTS / SAT'], ['🧭', 'Figure out what to become']] },
+          { t: 'What grade are you in?', o: [['9', 'Grade 9'], ['10', 'Grade 10'], ['11', 'Grade 11'], ['🎓', 'Already graduated']] },
+          { t: 'What interests you more?', o: [['💻', 'IT & engineering'], ['🧬', 'Medicine & science'], ['📈', 'Business & law'], ['🎨', 'Arts & languages']] }
+        ],
+        resTitle: 'Great! Your start is ready',
+        resLead: 'In Ventorme you get:',
+        res: [
+          ['UNT grant calculator — see your chances', 'Kazakhstan universities matched to your scores'],
+          ['Universities and scholarships abroad', 'Motivation essay help from Venti'],
+          ['IELTS and SAT preparation', 'Universities that accept your exam'],
+          ['Full career test — careers that fit your interests', 'Universities that teach these careers']
+        ],
+        resCommon: 'Admission plan and the Venti AI assistant',
+        resCta: 'Open my plan for free'
+      }
+    };
+
+    var lang = 'ru';
+    var quiz = { step: 0, answers: [] };
+
+    function store(key, val) {
+      try { if (val === undefined) return localStorage.getItem(key); localStorage.setItem(key, val); } catch (e) { return null; }
+    }
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+    function setLinks() {
+      document.querySelectorAll('[data-cta]').forEach(function (a) { a.href = TEAM_LINK; });
+    }
+
+    function applyLang(l) {
+      lang = I18N[l] ? l : 'ru';
+      var d = I18N[lang];
+      document.documentElement.lang = lang === 'kz' ? 'kk' : lang;
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var v = d[el.getAttribute('data-i18n')];
+        if (typeof v === 'string') el.textContent = v;
+      });
+      document.querySelectorAll('.lang-btn').forEach(function (b) {
+        var on = b.getAttribute('data-lang') === lang;
+        b.className = 'lang-btn px-2.5 py-1.5 rounded-full ' + (on ? 'bg-white text-brand-700 shadow' : 'text-slate-500');
+        b.setAttribute('aria-pressed', on);
+      });
+      store('vt_lang', lang);
+      renderQuiz();
+    }
+
+    function renderQuiz() {
+      var d = I18N[lang], box = document.getElementById('quiz'), html;
+      if (quiz.step < 3) {
+        var q = d.q[quiz.step];
+        html = '<div class="fade-in">' +
+          '<div class="flex items-center justify-between text-xs font-bold text-slate-500">' +
+            '<span>' + esc(d.step.replace('{n}', quiz.step + 1)) + '</span>' +
+            (quiz.step > 0 ? '<button type="button" data-back class="text-brand-700">' + esc(d.back) + '</button>' : '') +
+          '</div>' +
+          '<div class="mt-2 h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full grad-btn rounded-full" style="width:' + ((quiz.step + 1) / 3 * 100) + '%"></div></div>' +
+          '<h2 class="mt-2.5 text-base md:text-xl font-extrabold">' + esc(q.t) + '</h2>' +
+          '<div class="mt-2.5 grid grid-cols-2 gap-2">' +
+          q.o.map(function (o, i) {
+            return '<button type="button" data-opt="' + i + '" class="opt text-left border-2 border-slate-100 hover:border-brand-500 bg-slate-50 hover:bg-brand-50 rounded-2xl p-2.5 min-h-[64px] flex flex-col gap-1">' +
+              '<span class="text-xl leading-none font-extrabold text-brand-700">' + esc(o[0]) + '</span>' +
+              '<span class="text-[13px] leading-snug font-bold text-slate-800">' + esc(o[1]) + '</span></button>';
+          }).join('') +
+          '</div></div>';
+      } else {
+        var goal = quiz.answers[0] || 0, r = d.res[goal];
+        var items = [r[0], r[1], d.resCommon];
+        html = '<div class="fade-in text-center">' +
+          '<div class="mx-auto w-12 h-12 rounded-full grad-btn grid place-items-center text-white text-2xl">✓</div>' +
+          '<h2 class="mt-3 text-xl font-extrabold">' + esc(d.resTitle) + '</h2>' +
+          '<p class="mt-1 text-sm text-slate-500">' + esc(d.resLead) + '</p>' +
+          '<ul class="mt-3 space-y-2 text-left">' +
+          items.map(function (t) { return '<li class="flex gap-2 bg-brand-50 rounded-xl p-2.5 text-sm font-semibold"><span class="text-brand-600">✔</span><span>' + esc(t) + '</span></li>'; }).join('') +
+          '</ul>' +
+          '<a href="' + TEAM_LINK + '" class="mt-4 grad-btn flex items-center justify-center text-white font-extrabold h-12 rounded-2xl shadow-card">' + esc(d.resCta) + ' →</a>' +
+          '<button type="button" data-restart class="mt-2 text-xs font-semibold text-slate-500 underline">' + esc(d.restart) + '</button>' +
+          '</div>';
+      }
+      box.innerHTML = html;
+    }
+
+    document.getElementById('quiz').addEventListener('click', function (e) {
+      var opt = e.target.closest('[data-opt]');
+      if (opt) { quiz.answers[quiz.step] = +opt.getAttribute('data-opt'); quiz.step++; renderQuiz(); return; }
+      if (e.target.closest('[data-back]')) { quiz.step = Math.max(0, quiz.step - 1); renderQuiz(); return; }
+      if (e.target.closest('[data-restart]')) { quiz = { step: 0, answers: [] }; renderQuiz(); }
+    });
+
+    document.querySelectorAll('.lang-btn').forEach(function (b) {
+      b.addEventListener('click', function () { applyLang(b.getAttribute('data-lang')); });
+    });
+
+    // Cookie: компактная плашка над липкой кнопкой
+    var cookie = document.getElementById('cookie');
+    if (store('vt_cookie') !== '1') cookie.classList.remove('hidden');
+    document.getElementById('cookie-ok').addEventListener('click', function () {
+      cookie.classList.add('hidden'); store('vt_cookie', '1');
+    });
+
+    // Подсказка для встроенных браузеров Instagram / Facebook
+    if (/Instagram|FBAN|FBAV|FB_IAB/i.test(navigator.userAgent || '')) {
+      document.getElementById('webview-tip').classList.remove('hidden');
+    }
+
+    setLinks();
+    applyLang(store('vt_lang') || 'ru');
+  </script>
+</body>
+</html>
