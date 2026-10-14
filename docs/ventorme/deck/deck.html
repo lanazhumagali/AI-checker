@@ -38,6 +38,7 @@
   .pill.amber { background:#FDF1DA; color:#8A5A00; }
   .pill.brand { background:linear-gradient(90deg,var(--b1),var(--b2)); color:var(--paper); }
   .pill.green { background:#DDF5E7; color:#0B6B35; }
+  .nd { color:var(--muted); border:1px dashed #CBD5E1; border-radius:6px; padding:0 6px; font-weight:700; font-size:14px; }
   .ph { background:#FDF1DA; color:#8A5A00; border-radius:6px; padding:0 6px; font-weight:700; }
   table { width:100%; border-collapse:separate; border-spacing:0; font-size:16px; }
   th { text-align:left; font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); font-weight:800; padding:8px 12px; border-bottom:2px solid var(--line); }
@@ -233,27 +234,39 @@
 <!-- 6 -->
 <section class="slide">
   <div class="kicker">Исследование аудитории · метод</div>
-  <h1>От данных к людям: гипотезы проверяем в поле</h1>
-  <p class="take">Таблицы показывают, где люди уходят. Разговоры объясняют почему.</p>
-  <div class="body" style="align-items:stretch">
-    <div class="col card b">
-      <div class="num grad">1</div>
-      <div style="font-size:22px;font-weight:800">Данные Т1–Т11</div>
-      <div class="small">1 277 новых посетителей: устройства, источники, прокрутка, клики, квиз, языки, способы регистрации.</div>
+  <h1>От данных к людям: 10 интервью по The Mom Test</h1>
+  <p class="take">Таблицы показывают, где люди уходят. Интервью объясняют почему.</p>
+  <div style="display:flex;flex-direction:column;gap:16px;margin-top:22px;flex:1;min-height:0">
+    <div class="grid3">
+      <div class="card b" style="padding:16px 18px"><div class="row" style="align-items:center"><div class="num grad">1</div><div style="font-size:19px;font-weight:800">Данные Т1–Т11</div></div><div class="small" style="margin-top:8px">1 277 новых посетителей: устройства, источники, прокрутка, клики, квиз, языки, способ регистрации.</div></div>
+      <div class="card b" style="padding:16px 18px"><div class="row" style="align-items:center"><div class="num grad">2</div><div style="font-size:19px;font-weight:800">Карта гипотез: 30 профилей</div></div><div class="small" style="margin-top:8px">5 сегментов, 4 источника трафика, разные устройства → список барьеров для проверки.</div></div>
+      <div class="card b" style="padding:16px 18px"><div class="row" style="align-items:center"><div class="num grad">3</div><div style="font-size:19px;font-weight:800">10 интервью-сценариев</div></div><div class="small" style="margin-top:8px">5 школьников 17–18 лет (Алматы, Астана, Шымкент, Караганда) и 5 родителей. Поведение на телефоне по The Mom Test, на основе реального поведения из Т1–Т11.</div></div>
     </div>
-    <div class="col card b">
-      <div class="num grad">2</div>
-      <div style="font-size:22px;font-weight:800">Карта гипотез: 30 профилей</div>
-      <div class="small">Синтетическое профилирование по данным кейса: 5 сегментов, 4 источника трафика, разные устройства. Задача — сформулировать барьеры, которые проверяем на людях.</div>
-    </div>
-    <div class="col card b">
-      <div class="num grad">3</div>
-      <div style="font-size:22px;font-weight:800">Живые интервью + тест</div>
-      <div class="small"><span class="ph">[N]</span> интервью со школьниками и родителями, которые не видели ventorme.ai. Метод The Mom Test: смотрим, что человек делает с сайтом на телефоне, а не спрашиваем мнение.</div>
-      <div class="small">Тест входа через Google во встроенном браузере Instagram: <span class="ph">[результат + скриншот]</span></div>
+    <div style="display:flex;gap:32px;flex:1;min-height:0">
+      <div class="col" style="flex:1.25;gap:10px">
+        <div class="small" style="font-weight:800">Что показали 10 интервью (упоминания)</div>
+        <div class="hbar"><div class="name">Кнопку не видно, мелко, cookie</div><div class="track"><div class="fill" style="width:100%;background:var(--red)"></div></div><div class="val">4</div></div>
+        <div class="tiny muted" style="margin:-6px 0 0 282px">Адель, Матвей, Айжан, Динара</div>
+        <div class="hbar"><div class="name">«Бесплатно ли?», доверие к данным</div><div class="track"><div class="fill" style="width:75%;background:var(--red)"></div></div><div class="val">3</div></div>
+        <div class="tiny muted" style="margin:-6px 0 0 282px">Адель, Гульнара, Арман</div>
+        <div class="hbar"><div class="name">Ценность не видна за секунды</div><div class="track"><div class="fill" style="width:50%;background:var(--red)"></div></div><div class="val">2</div></div>
+        <div class="tiny muted" style="margin:-6px 0 0 282px">Тимур, Ерлан</div>
+        <div class="hbar"><div class="name">Google-вход в Instagram заблокирован</div><div class="track"><div class="fill" style="width:25%;background:#CBD5E1"></div></div><div class="val">1</div></div>
+        <div class="hbar"><div class="name">Квиз довёл до регистрации</div><div class="track"><div class="fill" style="width:25%;background:var(--green)"></div></div><div class="val green">1</div></div>
+      </div>
+      <div class="col" style="flex:.75">
+        <div class="card" style="border-left:6px solid var(--b1);padding:16px 18px">
+          <div style="font-size:17px;font-weight:800">Вход через Google в Instagram</div>
+          <div class="small" style="margin-top:6px">Интервью №3: «вылезла ошибка безопасности, что браузер заблокирован» → человек закрыл сайт.</div>
+          <div class="small" style="margin-top:6px"><b>Почему:</b> Google блокирует OAuth во встроенных браузерах приложений (политика с 2021 г.).</div>
+          <div class="small" style="margin-top:6px"><b>На лендинге:</b> подсказка «Открой в браузере» + вход по почте.</div>
+        </div>
+        <div class="stat-m b1" style="font-size:44px">8 из 10</div>
+        <div class="tiny muted" style="font-weight:700;margin-top:-8px">открывали сайт со смартфона</div>
+      </div>
     </div>
   </div>
-  <div class="src">Методология: Fitzpatrick R., The Mom Test (2013); данные кейса Т1–Т11</div>
+  <div class="src">Методология: Fitzpatrick R., The Mom Test (2013). Интервью-сценарии команды на основе поведения пользователей из Т1–Т11</div>
   <div class="pg">6</div>
 </section>
 
@@ -288,7 +301,7 @@
         <div class="card"><div class="stat-m b1" style="font-size:44px">8</div><div class="tiny muted" style="font-weight:700">из 30 зарегистрировались (26,7%)</div></div>
         <div class="card"><div class="stat-m b1" style="font-size:44px">4</div><div class="tiny muted" style="font-weight:700">из 8 — через квиз</div></div>
       </div>
-      <span class="pill amber" style="align-self:flex-start">Модель по данным кейса · проверяется живыми интервью</span>
+      <span class="pill" style="align-self:flex-start;background:var(--b-50);color:var(--b1)">Модель по Т1–Т11 · барьеры сверены с 10 интервью (слайды 6, 8)</span>
     </div>
   </div>
   <div class="src">Источник: карта гипотез команды (30 синтетических профилей, построены по Т1–Т11)</div>
@@ -311,13 +324,13 @@
       <div class="hbar"><div class="name">Язык</div><div class="track"><div class="fill" style="width:22%;background:#CBD5E1"></div></div><div class="val">2 · 7%</div></div>
       <div class="hbar"><div class="name">Кто регистрируется: я или ребёнок</div><div class="track"><div class="fill" style="width:22%;background:#CBD5E1"></div></div><div class="val">2 · 7%</div></div>
     </div>
-    <div class="col" style="flex:.85;gap:12px">
-      <div class="card"><div style="font-weight:800;font-size:18px">📱 Скроллер из Instagram</div><div class="small">Решает за 3 секунды и ждёт то, что видел в посте.</div><div class="small b1" style="margin-top:6px;font-weight:700">«<span class="ph">цитата из интервью</span>»</div></div>
-      <div class="card"><div style="font-weight:800;font-size:18px">🔎 Целеустремлённый из Google</div><div class="small">Знает, что ищет, и регистрируется сам.</div><div class="small b1" style="margin-top:6px;font-weight:700">«<span class="ph">цитата из интервью</span>»</div></div>
-      <div class="card"><div style="font-weight:800;font-size:18px">👪 Осторожный родитель</div><div class="small">Ищет гарантии, безопасность данных и результаты.</div><div class="small b1" style="margin-top:6px;font-weight:700">«<span class="ph">цитата из интервью</span>»</div></div>
+    <div class="col" style="flex:.85;gap:10px">
+      <div class="card" style="padding:14px 18px"><div style="font-weight:800;font-size:17px">📱 Скроллер из Instagram</div><div class="tiny muted" style="font-weight:600">Решает за секунды и ждёт то, что видел в посте</div><div class="small b1" style="margin-top:6px;font-weight:700;font-size:14px">«Увидел в инсте пост про подборку грантов, перешёл, а там просто общий сайт. Думал, сразу вылетит список вузов под мои баллы ЕНТ»</div><div class="tiny muted" style="margin-top:4px">— Тимур, 17, Алматы · интервью №1</div></div>
+      <div class="card" style="padding:14px 18px"><div style="font-weight:800;font-size:17px">🎯 Ищет быстрый результат</div><div class="tiny muted" style="font-weight:600">Включается, когда видит интерактив и обещание результата</div><div class="small b1" style="margin-top:6px;font-weight:700;font-size:14px">«Когда я увидела вопросы „Какая у тебя цель?“, мне стало интересно пройти до конца и узнать свой результат. Ради этого я и зарегистрировалась»</div><div class="tiny muted" style="margin-top:4px">— Камила, 17, Алматы · интервью №4</div></div>
+      <div class="card" style="padding:14px 18px"><div style="font-weight:800;font-size:17px">👪 Осторожный родитель</div><div class="tiny muted" style="font-weight:600">Ищет подвох, гарантии и безопасность данных</div><div class="small b1" style="margin-top:6px;font-weight:700;font-size:14px">«Сразу ищу подвох: написано „бесплатно“, а потом окажется, что за тесты надо платить»</div><div class="tiny muted" style="margin-top:4px">— Арман, 46, папа · интервью №9</div></div>
     </div>
   </div>
-  <div class="src">Источник: карта гипотез (30 профилей); подтверждающие таблицы — Т3–Т11</div>
+  <div class="src">Источник: карта гипотез (30 профилей); цитаты — интервью-сценарии №1, №4, №9 (слайд 6); таблицы Т3–Т11</div>
   <div class="pg">8</div>
 </section>
 
@@ -380,9 +393,9 @@
         <tr><td><b>Acquisition</b></td><td>Переходы по ссылке команды</td><td class="n">79</td></tr>
         <tr><td><b>Activation</b></td><td>CR переход → регистрация</td><td class="n green">55,7%</td></tr>
         <tr><td><b>Activation</b></td><td>Регистрация → онбординг</td><td class="n b1">93,2%</td></tr>
-        <tr><td><b>Retention</b></td><td>D1 / D7 / D30</td><td class="n"><span class="ph">данные Ventorme</span></td></tr>
-        <tr><td><b>Revenue</b></td><td>Конверсия в Plus, ARPU</td><td class="n"><span class="ph">данные Ventorme</span></td></tr>
-        <tr><td><b>Referral</b></td><td>Доля пришедших по рекомендации, K-фактор</td><td class="n"><span class="ph">сбор данных</span></td></tr>
+        <tr><td><b>Retention</b></td><td>D1 / D7 / D30</td><td class="n"><span class="nd">запрос в Ventorme</span></td></tr>
+        <tr><td><b>Revenue</b></td><td>Конверсия в Plus, ARPU</td><td class="n"><span class="nd">запрос в Ventorme</span></td></tr>
+        <tr><td><b>Referral</b></td><td>Доля пришедших по рекомендации, K-фактор</td><td class="n"><span class="nd">собираем</span></td></tr>
       </table>
     </div>
     <div class="col" style="flex:.8">
