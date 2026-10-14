@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Nexus · team-172 · HACKNEXT × Ventorme</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: 1280px 720px; margin: 0; }
+  :root {
+    --b1:#3D33F5; --b2:#7B1FF5; --b-soft:#E0DEFF; --b-50:#EEEDFF;
+    --paper:#FCFBF8; --canvas:#F4F3EF; --ink:#0B0A1F; --muted:#475569;
+    --red:#E5484D; --green:#12A150; --amber:#F5A524; --line:#E6E4DE;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Manrope', 'Inter', sans-serif; color: var(--ink); background: #ccc; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .slide { width:1280px; height:720px; background:var(--paper); position:relative; overflow:hidden; padding:56px 64px 48px; page-break-after:always; display:flex; flex-direction:column; }
+  .slide:last-child { page-break-after:auto; }
+  .kicker { font-size:15px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--b1); }
+  h1 { font-size:42px; line-height:1.12; font-weight:800; letter-spacing:-.02em; margin-top:8px; max-width:1100px; }
+  .take { margin-top:12px; font-size:20px; color:var(--muted); font-weight:600; max-width:1050px; }
+  .body { flex:1; display:flex; gap:40px; margin-top:28px; min-height:0; }
+  .col { flex:1; display:flex; flex-direction:column; gap:16px; min-width:0; }
+  .src { position:absolute; left:64px; bottom:20px; font-size:12px; color:var(--muted); }
+  .pg { position:absolute; right:64px; bottom:20px; font-size:12px; color:var(--muted); font-weight:700; }
+  .grad { background:linear-gradient(90deg,var(--b1),var(--b2)); }
+  .gtext { background:linear-gradient(90deg,var(--b1),var(--b2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .stat { font-size:120px; line-height:1; font-weight:800; letter-spacing:-.04em; }
+  .stat-m { font-size:64px; line-height:1; font-weight:800; letter-spacing:-.03em; }
+  .lbl { font-size:17px; color:var(--muted); font-weight:600; margin-top:6px; }
+  .card { background:#fff8; background:var(--canvas); border-radius:20px; padding:20px 22px; }
+  .card.b { background:var(--b-50); }
+  ul.bl { list-style:none; display:flex; flex-direction:column; gap:10px; font-size:19px; font-weight:500; line-height:1.35; }
+  ul.bl li { padding-left:22px; position:relative; }
+  ul.bl li::before { content:''; position:absolute; left:0; top:10px; width:9px; height:9px; border-radius:50%; background:var(--b1); }
+  b, strong { font-weight:800; }
+  .red { color:var(--red); } .green { color:var(--green); } .b1 { color:var(--b1); } .muted { color:var(--muted); }
+  .pill { display:inline-flex; align-items:center; gap:8px; padding:7px 14px; border-radius:999px; font-size:14px; font-weight:800; }
+  .pill.amber { background:#FDF1DA; color:#8A5A00; }
+  .pill.brand { background:linear-gradient(90deg,var(--b1),var(--b2)); color:var(--paper); }
+  .pill.green { background:#DDF5E7; color:#0B6B35; }
+  .ph { background:#FDF1DA; color:#8A5A00; border-radius:6px; padding:0 6px; font-weight:700; }
+  table { width:100%; border-collapse:separate; border-spacing:0; font-size:16px; }
+  th { text-align:left; font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); font-weight:800; padding:8px 12px; border-bottom:2px solid var(--line); }
+  td { padding:9px 12px; border-bottom:1px solid var(--line); font-weight:500; vertical-align:top; }
+  td.n { text-align:right; font-weight:800; white-space:nowrap; }
+  /* bars */
+  .hbar { display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; }
+  .hbar .name { width:270px; flex-shrink:0; }
+  .hbar .track { flex:1; height:22px; background:var(--canvas); border-radius:6px; overflow:hidden; }
+  .hbar .fill { height:100%; border-radius:6px; }
+  .hbar .val { width:64px; text-align:right; font-weight:800; }
+  .vbars { display:flex; align-items:flex-end; gap:18px; height:230px; }
+  .vbar { display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; flex:1; }
+  .vbar .v { font-weight:800; font-size:22px; margin-bottom:6px; }
+  .vbar .bar { width:100%; border-radius:10px 10px 4px 4px; }
+  .vbar .n { margin-top:8px; font-size:14px; color:var(--muted); font-weight:700; text-align:center; }
+  .funnel { display:flex; flex-direction:column; gap:10px; }
+  .fstep { border-radius:14px; color:var(--paper); padding:11px 20px; display:flex; justify-content:space-between; align-items:baseline; font-weight:700; font-size:18px; }
+  .fstep span:last-child { font-size:30px; font-weight:800; }
+  .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .num { width:36px; height:36px; border-radius:50%; color:var(--paper); display:grid; place-items:center; font-weight:800; font-size:17px; flex-shrink:0; }
+  .row { display:flex; gap:14px; align-items:flex-start; }
+  .small { font-size:15px; } .tiny { font-size:13px; }
+  .deco { position:absolute; border-radius:50%; filter:blur(70px); opacity:.25; }
+</style>
+</head>
+<body>
+
+<!-- 1 -->
+<section class="slide" style="justify-content:center">
+  <div class="deco grad" style="width:520px;height:520px;right:-140px;top:-160px"></div>
+  <div class="deco" style="width:420px;height:420px;left:-160px;bottom:-200px;background:var(--b1)"></div>
+  <div style="display:flex;gap:56px;align-items:center;position:relative">
+    <div style="flex:1.3">
+      <div class="kicker">HACKNEXT × Ventorme · 1 тур</div>
+      <h1 style="font-size:56px;margin-top:16px">Почему <span class="gtext">80%</span> уходят с главной Ventorme — и как мы это исправили</h1>
+      <p class="take" style="font-size:22px;margin-top:20px">Разбор данных Т1–Т11 → 3 причины → лендинг → <b class="b1">41 регистрация</b></p>
+      <div style="display:flex;gap:12px;margin-top:28px">
+        <span class="pill brand">Команда Nexus · team-172</span>
+        <span class="pill green">Топ-15 рейтинга</span>
+      </div>
+      <p style="margin-top:28px;font-size:18px;font-weight:700">Лендинг: <span class="b1">ventormeuniprep.netlify.app</span></p>
+    </div>
+    <div style="flex:1;display:flex;justify-content:center">
+      <div style="width:300px;height:560px;border-radius:44px;background:var(--ink);padding:12px;box-shadow:0 30px 60px -20px rgba(61,51,245,.45)">
+        <div style="width:100%;height:100%;border-radius:34px;background:var(--canvas);padding:22px 18px;display:flex;flex-direction:column;gap:10px">
+          <div style="font-weight:800;font-size:15px">Ventorme</div>
+          <div style="font-size:11px;font-weight:800;color:var(--b1);background:var(--b-soft);border-radius:999px;padding:4px 10px;align-self:flex-start">Бесплатно для 9–11 классов</div>
+          <div style="font-size:22px;font-weight:800;line-height:1.15">Найди свою профессию <span class="gtext">и вуз мечты</span></div>
+          <div style="background:var(--paper);border-radius:18px;padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:6px">
+            <div style="grid-column:1/3;font-size:12px;font-weight:800">Какая у тебя главная цель?</div>
+            <div class="card" style="padding:8px;font-size:11px;font-weight:700;border-radius:10px">🎯 ЕНТ и грант</div>
+            <div class="card" style="padding:8px;font-size:11px;font-weight:700;border-radius:10px">✈️ За рубеж</div>
+            <div class="card" style="padding:8px;font-size:11px;font-weight:700;border-radius:10px">📘 IELTS / SAT</div>
+            <div class="card" style="padding:8px;font-size:11px;font-weight:700;border-radius:10px">🧭 Кем стать</div>
+          </div>
+          <div style="flex:1"></div>
+          <div class="grad" style="border-radius:14px;color:var(--paper);text-align:center;padding:12px;font-weight:800;font-size:13px">Зарегистрироваться бесплатно</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pg">1</div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <div class="kicker">Результат · 35 баллов</div>
+  <h1>41 засчитанная регистрация и конверсия выше среднего</h1>
+  <p class="take">Из тех, кто перешёл по нашей ссылке, регистрируется <b class="green">55,7%</b>. В среднем по всем командам — 42,6%.</p>
+  <div class="body">
+    <div class="col" style="flex:.9">
+      <div class="stat b1">41</div>
+      <div class="lbl">регистрация с пройденным онбордингом</div>
+      <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+        <span class="pill green">11–12 место · промежуточный рейтинг</span>
+        <span class="pill brand">В финал проходят 15 команд</span>
+      </div>
+      <div class="card" style="margin-top:auto">
+        <div class="small"><b>Платная реклама: 0 ₸.</b> Боты и фейковые аккаунты не использовали (п. 13.3 Положения). Только органические каналы.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="funnel">
+        <div class="fstep" style="background:var(--b1)"><span>Переходы по ссылке</span><span>79</span></div>
+        <div class="fstep" style="background:#5A2AF5;margin:0 30px"><span>Регистрации</span><span>44</span></div>
+        <div class="fstep" style="background:var(--b2);margin:0 60px"><span>Прошли онбординг</span><span>41</span></div>
+      </div>
+      <div class="vbars" style="height:170px;margin-top:6px">
+        <div class="vbar"><div class="v green">55,7%</div><div class="bar" style="height:54px;background:var(--green)"></div><div class="n">Nexus: переход → регистрация</div></div>
+        <div class="vbar"><div class="v muted">42,6%</div><div class="bar" style="height:41px;background:#CBD5E1"></div><div class="n">Среднее по командам<br>(1 550 / 3 637)</div></div>
+        <div class="vbar"><div class="v b1">93,2%</div><div class="bar" style="height:90px;background:var(--b-soft)"></div><div class="n">Регистрация → онбординг<br>(среднее 95,1%)</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="src">Источник: промежуточные итоги HACKNEXT на 14.10.2026, 21:15 (Астана). Итоговый подсчёт — организаторы после 23:59.</div>
+  <div class="pg">2</div>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <div class="kicker">Проблема</div>
+  <h1>4 из 5 новых посетителей уходят — и теряются ещё до формы</h1>
+  <p class="take">Форма регистрации работает. Чинить нужно главную страницу.</p>
+  <div class="body">
+    <div class="col" style="flex:.8">
+      <div class="stat red">80,9%</div>
+      <div class="lbl">новых посетителей ушли без регистрации<br>(1 277 → 244 регистрации, конверсия 19,1%)</div>
+    </div>
+    <div class="col" style="justify-content:center;gap:22px">
+      <div class="hbar"><div class="name">Ушли быстрее 10 секунд</div><div class="track"><div class="fill" style="width:27.6%;background:var(--red)"></div></div><div class="val red">27,6%</div></div>
+      <div class="hbar"><div class="name">Ни разу не прокрутили</div><div class="track"><div class="fill" style="width:40%;background:var(--red)"></div></div><div class="val red">40,0%</div></div>
+      <div class="hbar"><div class="name">Открыли регистрацию / вход</div><div class="track"><div class="fill" style="width:25.2%;background:var(--b1)"></div></div><div class="val b1">25,2%</div></div>
+      <div class="card b" style="margin-top:8px">
+        <div style="font-size:20px;font-weight:700">Из открывших форму регистрируются <b class="b1">~76%</b> (244 / 322) — <b>проблема до формы, а не в ней.</b></div>
+      </div>
+      <div class="tiny muted">Строки Т1 пересекаются: один человек может попасть в несколько.</div>
+    </div>
+  </div>
+  <div class="src">Источник: Т1, данные кейса (трекер ventorme.ai, 17.08–20.09.2026)</div>
+  <div class="pg">3</div>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+  <div class="kicker">Причина №1 · причина vs совпадение</div>
+  <h1>Не «плохой телефон», а холодный трафик из Instagram</h1>
+  <p class="take">Разрыв между устройствами — совпадение. При одном и том же источнике телефон и компьютер конвертируют одинаково.</p>
+  <div class="body">
+    <div class="col">
+      <div class="vbars">
+        <div class="vbar"><div class="v">15,6%</div><div class="bar" style="height:68px;background:var(--b-soft)"></div><div class="n">Телефон<br>все источники</div></div>
+        <div class="vbar"><div class="v">32,8%</div><div class="bar" style="height:144px;background:var(--b1)"></div><div class="n">Компьютер<br>все источники</div></div>
+        <div style="width:2px;height:100%;background:var(--line)"></div>
+        <div class="vbar"><div class="v">23,3%</div><div class="bar" style="height:102px;background:var(--b1)"></div><div class="n">Телефон<br>прямой заход</div></div>
+        <div class="vbar"><div class="v">23,4%</div><div class="bar" style="height:103px;background:var(--b1)"></div><div class="n">Компьютер<br>прямой заход</div></div>
+      </div>
+      <span class="pill green" style="align-self:center">✓ При одном источнике устройство не влияет</span>
+    </div>
+    <div class="col" style="flex:.9">
+      <div class="card" style="border-left:6px solid var(--red)">
+        <div class="stat-m red">10,6%</div>
+        <div class="lbl">конверсия Instagram на телефоне. Это 64% мобильного трафика (658 из 1 028)</div>
+      </div>
+      <ul class="bl">
+        <li>Без Instagram разрыв телефон / компьютер сокращается с <b>17,2</b> до <b>8,5 п.п.</b></li>
+        <li>Неделя 24–30 августа: 89% трафика с телефона, конверсия <b class="red">6,8%</b></li>
+        <li>Facebook: <b>0</b> регистраций из 48</li>
+      </ul>
+    </div>
+  </div>
+  <div class="src">Источник: Т2, Т3, Т4, Т5; расчёт команды по Т4</div>
+  <div class="pg">4</div>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <div class="kicker">Причины №2 и №3</div>
+  <h1>Первый экран на телефоне не даёт действия. Работает только квиз</h1>
+  <p class="take">Через квиз пришли 69% мобильных регистраций, но начинают его лишь 16% посетителей с телефона.</p>
+  <div class="body">
+    <div class="col" style="flex:.85">
+      <div class="small" style="font-weight:800">Регистрации тех, кто видел только первый экран</div>
+      <div class="vbars" style="height:130px">
+        <div class="vbar"><div class="v red">3,6%</div><div class="bar" style="height:20px;background:var(--red)"></div><div class="n">Телефон</div></div>
+        <div class="vbar"><div class="v">28,0%</div><div class="bar" style="height:100px;background:var(--b1)"></div><div class="n">Компьютер</div></div>
+      </div>
+      <ul class="bl small" style="font-size:17px">
+        <li>Кнопки входа нажали: <b>20</b> человек с телефона против <b>67</b> с компьютера</li>
+        <li>Cookie-баннер закрывают <b>48%</b> мобильных</li>
+        <li>В некликабельные элементы тыкают <b>20,5%</b></li>
+      </ul>
+    </div>
+    <div class="col">
+      <div class="small" style="font-weight:800">Воронка мини-квиза на телефоне</div>
+      <div class="funnel">
+        <div class="fstep" style="background:var(--b1)"><span>Начали квиз (16% мобильных)</span><span>165</span></div>
+        <div class="fstep" style="background:#4C2FF5;margin-right:20px"><span>Дошли до конца — 95%</span><span>156</span></div>
+        <div class="fstep" style="background:#6A25F5;margin-right:40px"><span>Нажали регистрацию</span><span>138</span></div>
+        <div class="fstep" style="background:var(--b2);margin-right:60px"><span>Зарегистрировались — 66,7%</span><span>110</span></div>
+      </div>
+      <div class="card b" style="display:flex;gap:18px;align-items:center">
+        <div class="stat-m b1">69%</div>
+        <div class="small"><b>мобильных регистраций</b> (110 из 160) пришли через квиз. Оговорка: квиз начинают более мотивированные люди (самоотбор).</div>
+      </div>
+    </div>
+  </div>
+  <div class="src">Источник: Т6, Т8, Т9</div>
+  <div class="pg">5</div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <div class="kicker">Исследование аудитории · метод</div>
+  <h1>От данных к людям: гипотезы проверяем в поле</h1>
+  <p class="take">Таблицы показывают, где люди уходят. Разговоры объясняют почему.</p>
+  <div class="body" style="align-items:stretch">
+    <div class="col card b">
+      <div class="num grad">1</div>
+      <div style="font-size:22px;font-weight:800">Данные Т1–Т11</div>
+      <div class="small">1 277 новых посетителей: устройства, источники, прокрутка, клики, квиз, языки, способы регистрации.</div>
+    </div>
+    <div class="col card b">
+      <div class="num grad">2</div>
+      <div style="font-size:22px;font-weight:800">Карта гипотез: 30 профилей</div>
+      <div class="small">Синтетическое профилирование по данным кейса: 5 сегментов, 4 источника трафика, разные устройства. Задача — сформулировать барьеры, которые проверяем на людях.</div>
+    </div>
+    <div class="col card b">
+      <div class="num grad">3</div>
+      <div style="font-size:22px;font-weight:800">Живые интервью + тест</div>
+      <div class="small"><span class="ph">[N]</span> интервью со школьниками и родителями, которые не видели ventorme.ai. Метод The Mom Test: смотрим, что человек делает с сайтом на телефоне, а не спрашиваем мнение.</div>
+      <div class="small">Тест входа через Google во встроенном браузере Instagram: <span class="ph">[результат + скриншот]</span></div>
+    </div>
+  </div>
+  <div class="src">Методология: Fitzpatrick R., The Mom Test (2013); данные кейса Т1–Т11</div>
+  <div class="pg">6</div>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <div class="kicker">Карта гипотез · 30 профилей</div>
+  <h1>Кто приходит на главную и где он отваливается</h1>
+  <p class="take">В модели из Instagram не регистрируется никто, из Google и прямого захода — большинство. Это совпадает с Т4.</p>
+  <div class="body">
+    <div class="col" style="flex:.8;align-items:center">
+      <svg width="250" height="250" viewBox="0 0 42 42" aria-label="Сегменты">
+        <circle cx="21" cy="21" r="15.9" fill="none" stroke="#3D33F5" stroke-width="7" stroke-dasharray="66.7 33.3" stroke-dashoffset="25"/>
+        <circle cx="21" cy="21" r="15.9" fill="none" stroke="#7B1FF5" stroke-width="7" stroke-dasharray="16.65 83.35" stroke-dashoffset="-41.7"/>
+        <circle cx="21" cy="21" r="15.9" fill="none" stroke="#C6C2FF" stroke-width="7" stroke-dasharray="16.65 83.35" stroke-dashoffset="-58.35"/>
+        <text x="21" y="21" text-anchor="middle" font-size="8" font-weight="800" fill="#0B0A1F" font-family="Manrope,Inter">30</text>
+        <text x="21" y="26.5" text-anchor="middle" font-size="2.8" font-weight="700" fill="#475569" font-family="Manrope,Inter">профилей</text>
+      </svg>
+      <div class="small" style="display:flex;flex-direction:column;gap:6px;align-self:stretch">
+        <div><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#3D33F5"></span> 10–11 класс (ЕНТ, IELTS/SAT, не определились) — <b>20 · 67%</b></div>
+        <div><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#7B1FF5"></span> 9 класс — <b>5 · 17%</b></div>
+        <div><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#C6C2FF"></span> Родители — <b>5 · 17%</b></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="small" style="font-weight:800">Регистрация по источникам (модель)</div>
+      <div class="hbar"><div class="name">Instagram · 18 профилей</div><div class="track"><div class="fill" style="width:1%;background:var(--red)"></div></div><div class="val red">0%</div></div>
+      <div class="hbar"><div class="name">Прямой / мессенджеры · 7</div><div class="track"><div class="fill" style="width:71%;background:var(--b1)"></div></div><div class="val b1">71%</div></div>
+      <div class="hbar"><div class="name">Google · 3</div><div class="track"><div class="fill" style="width:100%;background:var(--b1)"></div></div><div class="val b1">100%</div></div>
+      <div class="hbar"><div class="name">Facebook · 2</div><div class="track"><div class="fill" style="width:1%;background:var(--red)"></div></div><div class="val red">0%</div></div>
+      <div class="grid3" style="margin-top:10px">
+        <div class="card"><div class="stat-m b1" style="font-size:44px">83%</div><div class="tiny muted" style="font-weight:700">с телефона (25 из 30); Т2: 80,5%</div></div>
+        <div class="card"><div class="stat-m b1" style="font-size:44px">8</div><div class="tiny muted" style="font-weight:700">из 30 зарегистрировались (26,7%)</div></div>
+        <div class="card"><div class="stat-m b1" style="font-size:44px">4</div><div class="tiny muted" style="font-weight:700">из 8 — через квиз</div></div>
+      </div>
+      <span class="pill amber" style="align-self:flex-start">Модель по данным кейса · проверяется живыми интервью</span>
+    </div>
+  </div>
+  <div class="src">Источник: карта гипотез команды (30 синтетических профилей, построены по Т1–Т11)</div>
+  <div class="pg">7</div>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <div class="kicker">Боли и потребности</div>
+  <h1>Три главных барьера: «не то», «не нашёл кнопку», «не понял, что бесплатно»</h1>
+  <div class="body" style="margin-top:20px">
+    <div class="col" style="flex:1.15;gap:11px">
+      <div class="small" style="font-weight:800">Упоминания барьеров в 30 профилях (можно назвать несколько)</div>
+      <div class="hbar"><div class="name">Не продолжает обещание поста</div><div class="track"><div class="fill" style="width:90%;background:var(--red)"></div></div><div class="val">8 · 27%</div></div>
+      <div class="hbar"><div class="name">Не видно кнопки / cookie</div><div class="track"><div class="fill" style="width:56%;background:var(--red)"></div></div><div class="val">5 · 17%</div></div>
+      <div class="hbar"><div class="name">Непонятно, что бесплатно</div><div class="track"><div class="fill" style="width:45%;background:var(--red)"></div></div><div class="val">4 · 13%</div></div>
+      <div class="hbar"><div class="name">Недоверие, данные</div><div class="track"><div class="fill" style="width:34%;background:#CBD5E1"></div></div><div class="val">3 · 10%</div></div>
+      <div class="hbar"><div class="name">Техника: загрузка, Google-вход</div><div class="track"><div class="fill" style="width:34%;background:#CBD5E1"></div></div><div class="val">3 · 10%</div></div>
+      <div class="hbar"><div class="name">Некликабельные элементы</div><div class="track"><div class="fill" style="width:34%;background:#CBD5E1"></div></div><div class="val">3 · 10%</div></div>
+      <div class="hbar"><div class="name">Язык</div><div class="track"><div class="fill" style="width:22%;background:#CBD5E1"></div></div><div class="val">2 · 7%</div></div>
+      <div class="hbar"><div class="name">Кто регистрируется: я или ребёнок</div><div class="track"><div class="fill" style="width:22%;background:#CBD5E1"></div></div><div class="val">2 · 7%</div></div>
+    </div>
+    <div class="col" style="flex:.85;gap:12px">
+      <div class="card"><div style="font-weight:800;font-size:18px">📱 Скроллер из Instagram</div><div class="small">Решает за 3 секунды и ждёт то, что видел в посте.</div><div class="small b1" style="margin-top:6px;font-weight:700">«<span class="ph">цитата из интервью</span>»</div></div>
+      <div class="card"><div style="font-weight:800;font-size:18px">🔎 Целеустремлённый из Google</div><div class="small">Знает, что ищет, и регистрируется сам.</div><div class="small b1" style="margin-top:6px;font-weight:700">«<span class="ph">цитата из интервью</span>»</div></div>
+      <div class="card"><div style="font-weight:800;font-size:18px">👪 Осторожный родитель</div><div class="small">Ищет гарантии, безопасность данных и результаты.</div><div class="small b1" style="margin-top:6px;font-weight:700">«<span class="ph">цитата из интервью</span>»</div></div>
+    </div>
+  </div>
+  <div class="src">Источник: карта гипотез (30 профилей); подтверждающие таблицы — Т3–Т11</div>
+  <div class="pg">8</div>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <div class="kicker">Desk Research</div>
+  <h1>Наши выводы совпадают с тем, что известно о мобильном вебе</h1>
+  <div class="body" style="margin-top:22px">
+    <table>
+      <tr><th style="width:42%">Наш вывод (данные кейса)</th><th>Внешнее подтверждение</th></tr>
+      <tr><td><b class="red">27,6%</b> уходят быстрее 10 секунд (Т1)</td><td>Пользователи решают, остаться ли на странице, за первые 10–20 секунд <span class="muted">— Nielsen Norman Group, 2011</span></td></tr>
+      <tr><td>Мобильные посетители нетерпеливы, 30% уходят за 10 с (Т7)</td><td>53% мобильных посещений обрываются, если страница грузится дольше 3 секунд <span class="muted">— Google / DoubleClick, 2016</span></td></tr>
+      <tr><td><b class="b1">80,5%</b> трафика с телефона (Т2)</td><td>В Казахстане в интернет выходят в основном со смартфона, это mobile-first рынок <span class="muted">— DataReportal, Digital 2025: Kazakhstan</span></td></tr>
+      <tr><td>Вход через Google — 55% регистраций (Т11), Instagram — 52% трафика (Т3)</td><td>Google блокирует вход через OAuth во встроенных браузерах приложений <span class="muted">— Google for Developers, 2021</span></td></tr>
+      <tr><td>Квиз даёт <b class="b1">69%</b> мобильных регистраций (Т8)</td><td>«Сначала ценность, потом регистрация» — принцип Product-Led Growth <span class="muted">— Bush W., 2019</span></td></tr>
+      <tr><td>Нужен контраст и читаемость на телефоне</td><td>Контраст текста не ниже 4,5:1 <span class="muted">— W3C, WCAG 2.1</span></td></tr>
+    </table>
+  </div>
+  <div class="src">Полный список источников — слайд 14</div>
+  <div class="pg">9</div>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <div class="kicker">Решение · лендинг · 25 баллов</div>
+  <h1>Каждый элемент лендинга отвечает на конкретную цифру</h1>
+  <div class="body" style="margin-top:20px">
+    <div class="col" style="flex:1.45">
+      <table>
+        <tr><th>Причина (данные)</th><th>Что сделали на лендинге</th></tr>
+        <tr><td>Instagram: <b class="red">10,6%</b> (Т4)</td><td>Одна аудитория — школьник, заголовок совпадает с постом, подсказка «Открой в браузере»</td></tr>
+        <tr><td>Первый экран: <b class="red">3,6%</b> (Т6), кнопок не видно (Т9)</td><td>Липкая кнопка «Зарегистрироваться бесплатно», cookie — одна тонкая строка</td></tr>
+        <tr><td>Квиз: начинают <b class="red">16%</b> (Т8)</td><td>Первый вопрос квиза прямо на первом экране</td></tr>
+        <tr><td>«Что бесплатно?» (Т9)</td><td>«Бесплатно · Без карты · Google или почта», 3 карточки ценности, FAQ из 4 вопросов</td></tr>
+        <tr><td>Язык (Т10), читаемость</td><td>RU / ҚАЗ / EN на виду; без чистых #FFF/#000; контраст ≥ 4,5:1</td></tr>
+      </table>
+    </div>
+    <div class="col" style="flex:.75">
+      <div class="card b" style="text-align:center">
+        <div class="small" style="font-weight:800">Переход → регистрация</div>
+        <div class="stat green" style="font-size:96px;margin-top:6px">55,7%</div>
+        <div class="lbl">против <b>42,6%</b> в среднем по командам</div>
+        <span class="pill green" style="margin-top:12px">+13,1 п.п.</span>
+      </div>
+      <div class="small muted" style="font-weight:600">Проверено на экране 360×640: квиз и кнопка видны без прокрутки, все кнопки ведут на ссылку <b>team-172</b>.</div>
+    </div>
+  </div>
+  <div class="src">Источник: Т4, Т6, Т8, Т9, Т10; промежуточные итоги на 14.10, 21:15</div>
+  <div class="pg">10</div>
+</section>
+
+<!-- 11 -->
+<section class="slide">
+  <div class="kicker">Метрики и юнит-экономика · AARRR</div>
+  <h1>Привлекаем без бюджета. Дальше рост дают удержание и рефералы</h1>
+  <div class="body" style="margin-top:22px">
+    <div class="col" style="flex:1.2">
+      <table>
+        <tr><th>Этап AARRR</th><th>Метрика</th><th style="text-align:right">Значение</th></tr>
+        <tr><td><b>Acquisition</b></td><td>Переходы по ссылке команды</td><td class="n">79</td></tr>
+        <tr><td><b>Activation</b></td><td>CR переход → регистрация</td><td class="n green">55,7%</td></tr>
+        <tr><td><b>Activation</b></td><td>Регистрация → онбординг</td><td class="n b1">93,2%</td></tr>
+        <tr><td><b>Retention</b></td><td>D1 / D7 / D30</td><td class="n"><span class="ph">данные Ventorme</span></td></tr>
+        <tr><td><b>Revenue</b></td><td>Конверсия в Plus, ARPU</td><td class="n"><span class="ph">данные Ventorme</span></td></tr>
+        <tr><td><b>Referral</b></td><td>Доля пришедших по рекомендации, K-фактор</td><td class="n"><span class="ph">сбор данных</span></td></tr>
+      </table>
+    </div>
+    <div class="col" style="flex:.8">
+      <div class="card b"><div class="small" style="font-weight:800">CAC (платный)</div><div class="stat-m b1">0 ₸</div><div class="small">Платная реклама запрещена (п. 13.3), все каналы органические</div></div>
+      <div class="card">
+        <div class="small" style="font-weight:800;margin-bottom:6px">Формулы</div>
+        <div class="small"><b>Retention</b><sub>Dn</sub> = активные на день n / зарегистрированные</div>
+        <div class="small" style="margin-top:4px"><b>LTV</b> = ARPU × маржа × средний срок подписки</div>
+        <div class="small" style="margin-top:4px"><b>Ориентир:</b> LTV / CAC ≥ 3</div>
+      </div>
+      <div class="tiny muted" style="font-weight:600">Тарифы «1 месяц», «12 месяцев» и Plus на сайте есть (Т9). Retention и LTV считаем по продуктовым данным Ventorme.</div>
+    </div>
+  </div>
+  <div class="src">Фреймворки: McClure D., AARRR (2007); Ellis S., Brown M., Hacking Growth (2017)</div>
+  <div class="pg">11</div>
+</section>
+
+<!-- 12 -->
+<section class="slide">
+  <div class="kicker">Каналы и план роста</div>
+  <h1>Сарафанное радио уже работает — встраиваем его в продукт</h1>
+  <div class="body" style="margin-top:20px">
+    <div class="col" style="flex:.85">
+      <div class="small" style="font-weight:800">Каналы, которые мы использовали</div>
+      <div class="row"><div class="num grad">1</div><div class="small"><b>Школьные и студенческие чаты</b> — WhatsApp, Telegram</div></div>
+      <div class="row"><div class="num grad">2</div><div class="small"><b>Сарафанное радио</b> — рекомендации друзьям и знакомым</div></div>
+      <div class="row"><div class="num grad">3</div><div class="small"><b>Органический шеринг</b> — посты и сторис, тематические сообщества</div></div>
+      <div class="card b" style="margin-top:6px">
+        <div class="small" style="font-weight:800">Referral Loop (предложение Ventorme)</div>
+        <div class="small" style="margin-top:6px">Квиз → карточка «Моя профессия: …» → сторис или чат → друг открывает лендинг → проходит квиз → регистрируется → <b class="b1">цикл повторяется</b></div>
+      </div>
+    </div>
+    <div class="col">
+      <table>
+        <tr><th>Срок</th><th>Действие</th><th>Метрика успеха</th></tr>
+        <tr><td><b>0–1 мес</b></td><td>Отдельные лендинги под каждый пост в Instagram, квиз на главной</td><td>CR Instagram: с 10,6% до 23%</td></tr>
+        <tr><td><b>1–3 мес</b></td><td>Карточка результата для шеринга, амбассадоры в классах</td><td>Доля рефералов, K-фактор</td></tr>
+        <tr><td><b>3–6 мес</b></td><td>Классные руководители, школы, родительские чаты</td><td>Регистрации на школу, D30</td></tr>
+      </table>
+      <div class="card" style="display:flex;gap:18px;align-items:center;border-left:6px solid var(--green)">
+        <div class="stat-m green">+34%</div>
+        <div class="small"><b>+83 регистрации</b> на тех же 1 277 посетителях, если Instagram будет конвертировать как прямой заход (23,3%)</div>
+      </div>
+    </div>
+  </div>
+  <div class="src">Источник: расчёт по Т4; Ellis S., Brown M., Hacking Growth (2017)</div>
+  <div class="pg">12</div>
+</section>
+
+<!-- 13 -->
+<section class="slide">
+  <div class="kicker">Выводы</div>
+  <h1>Что мы доказали</h1>
+  <div class="body" style="margin-top:26px">
+    <div class="grid4" style="width:100%">
+      <div class="card b"><div class="num grad">1</div><div style="font-size:20px;font-weight:800;margin-top:12px">Люди уходят до формы</div><div class="small" style="margin-top:6px">Из открывших форму регистрируются ~76%. Чинить нужно первый экран (Т1).</div></div>
+      <div class="card b"><div class="num grad">2</div><div style="font-size:20px;font-weight:800;margin-top:12px">Телефон — совпадение</div><div class="small" style="margin-top:6px">Причина — холодный трафик из Instagram: 10,6% против 23,3% у прямого захода (Т4).</div></div>
+      <div class="card b"><div class="num grad">3</div><div style="font-size:20px;font-weight:800;margin-top:12px">Квиз — главный путь</div><div class="small" style="margin-top:6px">69% мобильных регистраций при охвате 16%. Его место — первый экран (Т8).</div></div>
+      <div class="card" style="background:linear-gradient(135deg,var(--b1),var(--b2));color:var(--paper)"><div class="num" style="background:var(--paper);color:var(--b1)">4</div><div style="font-size:20px;font-weight:800;margin-top:12px">Лендинг работает</div><div style="font-size:44px;font-weight:800;margin-top:6px">55,7%</div><div class="small">переход → регистрация против 42,6% в среднем · <b>41 регистрация</b></div></div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px">
+    <div style="font-size:20px;font-weight:800">Лендинг: <span class="b1">ventormeuniprep.netlify.app</span></div>
+    <span class="pill brand">Nexus · team-172</span>
+  </div>
+  <div class="pg">13</div>
+</section>
+
+<!-- 14 -->
+<section class="slide">
+  <div class="kicker">Источники</div>
+  <h1>Литература и данные</h1>
+  <div class="body" style="margin-top:22px;font-size:15px;line-height:1.45">
+    <ol class="col" style="padding-left:22px;gap:9px">
+      <li>Кейс HACKNEXT × Ventorme: таблицы Т1–Т11, трекер ventorme.ai, выгрузка 25.09.2026.</li>
+      <li>HACKNEXT: промежуточные итоги на 14.10.2026, 21:15 (Астана).</li>
+      <li>Положение о хакатоне Hacknext 2026.</li>
+      <li>McClure D. <i>Startup Metrics for Pirates: AARRR!</i> — 2007.</li>
+      <li>Ellis S., Brown M. <i>Hacking Growth.</i> — Crown Business, 2017.</li>
+      <li>Fitzpatrick R. <i>The Mom Test.</i> — 2013.</li>
+    </ol>
+    <ol class="col" start="7" style="padding-left:22px;gap:9px">
+      <li>Bush W. <i>Product-Led Growth.</i> — 2019.</li>
+      <li>Nielsen J. <i>How Long Do Users Stay on Web Pages?</i> — Nielsen Norman Group, 2011.</li>
+      <li>Google / DoubleClick. <i>The Need for Mobile Speed.</i> — 2016.</li>
+      <li>Kepios / DataReportal. <i>Digital 2025: Kazakhstan.</i> — 2025.</li>
+      <li>W3C. <i>Web Content Accessibility Guidelines (WCAG) 2.1.</i> — 2018.</li>
+      <li>Google for Developers. <i>Upcoming security changes to Google's OAuth 2.0 authorization endpoint in embedded webviews.</i> — 2021.</li>
+    </ol>
+  </div>
+  <div class="pg">14</div>
+</section>
+
+</body>
+</html>
